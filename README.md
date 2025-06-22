@@ -1,5 +1,13 @@
 # MSc Project – Wearable Sensors for Task Classification
 
+## 📚 Table of Contents
+- [Project Overview](#-project-overview)
+- [Objectives](#-objectives)
+- [Hardware Components](#-hardware-components)
+- [Software Tools](#-software-tools)
+- [GANTT Chart](#-gantt-chart)
+
+
 ## 🧠 Project Overview
 This project aims to design and develop a compact, wearable sensor system capable of real-time motion intent detection for integration with a knee exoskeleton. The system leverages multimodal sensing—using IMUs, surface EMG, and flexible strain sensors—to classify gait phases and transition movements such as walking, sit-to-stand, and stand-to-sit, enabling predictive control for assistive robotics.
 
