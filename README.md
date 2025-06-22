@@ -55,3 +55,5 @@ Developed as part of the MSc ENG5059 at the University of Glasgow (2024–2025),
   - scikit-learn, PyTorch for classification
 
 ---
+## 📉 GANTT chart
+![image](https://github.com/user-attachments/assets/a639579e-bbe8-46da-a7e4-b72322364ded)
