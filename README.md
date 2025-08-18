@@ -65,3 +65,49 @@ Developed as part of the MSc ENG5059 at the University of Glasgow (2024–2025),
 ---
 ## 📉 GANTT chart
 ![image](https://github.com/user-attachments/assets/a639579e-bbe8-46da-a7e4-b72322364ded)
+
+---
+
+## 🔄 Original Plan vs Final Implementation
+
+This section highlights the original design intentions versus how the project evolved during development and testing.
+
+### ✅ Original Plan
+
+- **Sensor Configuration**:
+  - Use **two EMG channels** (rectus femoris and medial gastrocnemius)
+  - Track **heel standing and toe standing** as additional activities
+
+- **System Architecture**:
+  - Fully embedded **on-device classification** using the Teensy 4.1
+  - Include real-time feedback for closed-loop control simulation
+
+- **Data Strategy**:
+  - Focus on offline analysis with pre-recorded trials only
+  - Train multiple classifiers (e.g., k-NN, SVM, Random Forest)
+
+---
+
+### 🛠 Final Implementation
+
+- **Simplified EMG Setup**:
+  - EMG on rectus femoris was removed due to high noise and redundancy
+  - Final system used **a single EMG channel** (medial gastrocnemius) for intent detection
+
+- **Refined Activity Set**:
+  - **Removed toe/heel standing** due to minimal kinematic differentiation
+  - Final activity set:
+    - Standing, Walking, Sitting, Sit-to-Stand, Upstairs, Downstairs
+
+- **System Processing Flow**:
+  - Offloaded real-time classification to a **host PC via serial** (Python-based pipeline)
+  - Teensy focused on synchronized data acquisition and logging
+
+- **Model Optimization**:
+  - Settled on a **Random Forest Classifier** due to its low latency and high robustness
+  - Achieved **98% classification accuracy** across all test conditions
+
+- **User-Centric Adjustments**:
+  - Modified knee brace with **Velcro and internal routing** for comfort and consistent sensor positioning
+  - Added **grounding patch for EMG** signal stability during dynamic movement
+
