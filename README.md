@@ -3,7 +3,7 @@
 ## 📚 Table of Contents
 - [Project Overview](#-project-overview)
 - [Objectives](#-objectives)
-- [Hardware Components](#-hardware-components)
+- [Circuit Evolution](#-circuit-evolution)
 - [Software Tools](#-software-tools)
 - [GANTT Chart](#-gantt-chart)
 
@@ -33,26 +33,44 @@ Developed as part of the MSc ENG5059 at the University of Glasgow (2024–2025),
 - **System Evaluation**:
   - Conduct controlled trials
   - Assess wearability, responsiveness, and classification efficacy
- 
-    
-![image](https://github.com/user-attachments/assets/7f25eb37-445a-4450-a062-eca3d5324180)
+---
+
+## ⚡ Circuit Evolution: Original vs Final
+
+The hardware circuit also evolved significantly during the project.  
+Below is a comparison between the **original planned circuit** and the **final implemented version**.
+
+### 🔹 Original Circuit Plan
+<img width="665" height="364" alt="image" src="https://github.com/user-attachments/assets/d084921b-578a-46bf-83e1-9fc8fd085e78" />
+
+- Used a **single IMU (ICM-20948)** connected via I²C with pull-up resistors.  
+- EMG sensing relied on a **Grove EMG detector**.  
+- Knee flexion measured with a **resistive flex sensor** in a simple voltage divider.  
+- Simpler design, but **limited sensing coverage** and higher susceptibility to EMG noise.  
 
 ---
 
-## 🔧 Hardware Components
+### 🔹 Final Implemented Circuit
+<img width="557" height="447" alt="image" src="https://github.com/user-attachments/assets/e8c979e4-d115-4961-9ffe-fadf528431b8" />
 
-| Component                | Description                              |
-|-------------------------|------------------------------------------|
-| Teensy 4.1              | High-speed MCU for real-time processing  |
-| IMU (ICM-20948)         | Captures joint angles and gait events    |
-| Grove EMG Detector      | sEMG from quadriceps and hamstrings      |
-| Flexible Resistive Sensors | Detect knee joint bending               |
-| Elastic Knee Brace & Velcro | Stable sensor attachment              |
+- Added **two IMUs (thigh + shank)** for improved relative orientation tracking.  
+- Switched to **MyoWare 2.0 EMG** (calf placement) for more stable neuromuscular signals.  
+- Flex sensor repositioned and calibrated for knee bending measurement.  
+- Improved **power routing and grounding** (including a decoupling capacitor and grounding patch).  
+- Teensy 4.1 pin mapping fully clarified (A8 → EMG, A14 → FRS, I²C buses → IMUs).  
 
 ---
-![image](https://github.com/user-attachments/assets/9265d820-38ee-4826-acce-d92a69dc13e1)
-![image](https://github.com/user-attachments/assets/ba808ef0-afb2-44a8-bbe3-c594706213db)
 
+### 🔍 Key Changes
+| Aspect               | Original Plan                                | Final Implementation                        |
+|----------------------|-----------------------------------------------|---------------------------------------------|
+| IMU Setup            | 1× ICM-20948 (generic placement)             | 2× ICM-20948 (thigh + shank) for better kinematics |
+| EMG Sensor           | Grove EMG (rectus femoris)                   | MyoWare 2.0 (medial gastrocnemius)          |
+| Flex Sensor          | Basic voltage divider                        | Preloaded, aligned vertically over patella   |
+| Teensy Role          | Logging + planned on-device classification   | Logging + synchronized acquisition (classification offloaded to PC) |
+| Stability            | Simple wiring, limited grounding             | Improved wiring, added grounding patch + Velcro stabilization |
+
+---
 
 ## 💻 Software Tools
 
@@ -61,6 +79,9 @@ Developed as part of the MSc ENG5059 at the University of Glasgow (2024–2025),
   - Python (Jupyter Notebook)
   - NumPy, SciPy for filtering
   - scikit-learn, PyTorch for classification
+<img width="931" height="899" alt="image" src="https://github.com/user-attachments/assets/d4edda07-a599-4a9f-8072-4d5a52f0b21c" />
+
+
 
 ---
 ## 📉 GANTT chart
