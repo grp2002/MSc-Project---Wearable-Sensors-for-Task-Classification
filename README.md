@@ -51,7 +51,6 @@ The design evolved significantly during prototyping.
 - EMG sensing relied on a **Grove EMG detector**.  
 - Knee flexion measured with a **resistive flex sensor** in a simple voltage divider.  
 - Simpler design, but **limited sensing coverage** and higher susceptibility to EMG noise.  
-
 ---
 
 ### 🔹 Final Implemented Circuit
@@ -83,7 +82,9 @@ The design evolved significantly during prototyping.
 - SD logging + USB serial streaming (200 Hz)  
 - Serial commands:  
   - **‘s’** → start logging  
-  - **‘e’** → end logging  
+  - **‘e’** → end logging
+ 
+<img width="931" height="899" alt="image" src="https://github.com/user-attachments/assets/d4edda07-a599-4a9f-8072-4d5a52f0b21c" />
 <img width="1628" height="414" alt="image" src="https://github.com/user-attachments/assets/1cafd3f9-2cb7-4910-a9dc-18506a35ca9a" />
 
 ---
@@ -113,66 +114,30 @@ The design evolved significantly during prototyping.
 - Predictions smoothed with **majority vote over last 5 windows**  
 - Output: Live activity label displayed/logged  
 ---
-<img width="618" height="438" alt="image" src="https://github.com/user-attachments/assets/89e48836-5b99-4c96-9c5a-818626d063a1" />
-<img width="645" height="398" alt="image" src="https://github.com/user-attachments/assets/991b0082-fa2a-4bbb-ac89-9d0a787b688f" />
-<img width="548" height="361" alt="image" src="https://github.com/user-attachments/assets/a3a850e8-15d2-4c9f-9b6e-122f02ca11ac" />
 
-
-<img width="931" height="899" alt="image" src="https://github.com/user-attachments/assets/d4edda07-a599-4a9f-8072-4d5a52f0b21c" />
 ---
 
 ## 🎥 Testing & Results
+ 
+- Initial set of Classifications:Standing, Heel standing, Toe standing, Walking, Sit-to-stand
+  - https://github.com/grp2002/MSc-Project---Wearable-Sensors-for-Task-Classification/blob/main/videos/First_Classifications_Test.mp4
+  - Heel standing and toe standing were included to evaluate EMG sensitivity over the medial gastrocnemius.
 
-- Activities tested: **Standing, Walking, Sitting, Sit-to-Stand, Upstairs, Downstairs**  
-- Videos stored in `/videos/test_trials/`  
+- Revised Classification Set: Standing, Walking, Sitting, Sit-to-stand
+  - https://github.com/grp2002/MSc-Project---Wearable-Sensors-for-Task-Classification/blob/main/videos/Second_Classifications_Test.mp4
+  - Heel standing and toe standing were removed after results showed minimal contribution to knee kinematic variation.
+ 
+-Final Classification Set: Standing, Walking, Upstairs, Downstairs, Sitting, Sit-to-stand
+  - Stair-related activities were added to capture additional lower-limb motion patterns.
 - Final classifier achieved:  
   - **98% accuracy (cross-validation)**  
-  - Stable real-time prediction with minimal latency  
+  - Stable real-time prediction with minimal latency
+<img width="618" height="438" alt="image" src="https://github.com/user-attachments/assets/89e48836-5b99-4c96-9c5a-818626d063a1" />
 
----
+<img width="548" height="361" alt="image" src="https://github.com/user-attachments/assets/a3a850e8-15d2-4c9f-9b6e-122f02ca11ac" />
 
-## 🔄 Original Plan vs Final Implementation
 
-This section highlights the original design intentions versus how the project evolved during development and testing.
 
-### ✅ Original Plan
-
-- **Sensor Configuration**:
-  - Use **two EMG channels** (rectus femoris and medial gastrocnemius)
-  - Track **heel standing and toe standing** as additional activities
-
-- **System Architecture**:
-  - Fully embedded **on-device classification** using the Teensy 4.1
-  - Include real-time feedback for closed-loop control simulation
-
-- **Data Strategy**:
-  - Focus on offline analysis with pre-recorded trials only
-  - Train multiple classifiers (e.g., k-NN, SVM, Random Forest)
-
----
-
-### 🛠 Final Implementation
-
-- **Simplified EMG Setup**:
-  - EMG on rectus femoris was removed due to high noise and redundancy
-  - Final system used **a single EMG channel** (medial gastrocnemius) for intent detection
-
-- **Refined Activity Set**:
-  - **Removed toe/heel standing** due to minimal kinematic differentiation
-  - Final activity set:
-    - Standing, Walking, Sitting, Sit-to-Stand, Upstairs, Downstairs
-
-- **System Processing Flow**:
-  - Offloaded real-time classification to a **host PC via serial** (Python-based pipeline)
-  - Teensy focused on synchronized data acquisition and logging
-
-- **Model Optimization**:
-  - Settled on a **Random Forest Classifier** due to its low latency and high robustness
-  - Achieved **98% classification accuracy** across all test conditions
-
-- **User-Centric Adjustments**:
-  - Modified knee brace with **Velcro and internal routing** for comfort and consistent sensor positioning
-  - Added **grounding patch for EMG** signal stability during dynamic movement
  
 ---
 ## 📉 GANTT chart
