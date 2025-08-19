@@ -80,13 +80,6 @@ Below is a comparison between the **original planned circuit** and the **final i
   - NumPy, SciPy for filtering
   - scikit-learn, PyTorch for classification
 <img width="931" height="899" alt="image" src="https://github.com/user-attachments/assets/d4edda07-a599-4a9f-8072-4d5a52f0b21c" />
-
-
-
----
-## 📉 GANTT chart
-![image](https://github.com/user-attachments/assets/a639579e-bbe8-46da-a7e4-b72322364ded)
-
 ---
 
 ## 🔄 Original Plan vs Final Implementation
@@ -131,4 +124,10 @@ This section highlights the original design intentions versus how the project ev
 - **User-Centric Adjustments**:
   - Modified knee brace with **Velcro and internal routing** for comfort and consistent sensor positioning
   - Added **grounding patch for EMG** signal stability during dynamic movement
+ 
+---
+## 📉 GANTT chart
+![image](https://github.com/user-attachments/assets/a639579e-bbe8-46da-a7e4-b72322364ded)
+
+---
 
