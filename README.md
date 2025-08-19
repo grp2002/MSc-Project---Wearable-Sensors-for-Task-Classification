@@ -73,12 +73,33 @@ Below is a comparison between the **original planned circuit** and the **final i
 ---
 
 ## 💻 Software Tools
+- **Firmware Development**  
+  - Arduino IDE with Teensyduino (C++) for the Teensy 4.1  
+  - Handles: sensor initialization (IMUs, EMG, FRS), SD card logging, dual I²C configuration, sampling synchronization  
+<img width="1628" height="414" alt="image" src="https://github.com/user-attachments/assets/1cafd3f9-2cb7-4910-a9dc-18506a35ca9a" />
 
-- **Firmware**: Arduino IDE (C++ for Teensy)
-- **Signal Processing & ML**:
-  - Python (Jupyter Notebook)
-  - NumPy, SciPy for filtering
-  - scikit-learn, PyTorch for classification
+- **Data Processing & Machine Learning**  
+  - Python (Anaconda environment) with:  
+    - NumPy, SciPy, Pandas for filtering, signal conditioning, and feature extraction  
+    - scikit-learn for training and validating the Random Forest classifier  
+  - Feature extraction performed with 200 ms sliding windows and standard time-domain descriptors  
+
+- **Real-Time Classification Workflow**  
+  - Python script communicating with the Teensy over USB serial  
+  - Rolling buffer + feature extraction in real time  
+  - Random Forest inference with majority-vote smoothing for stable predictions
+ 
+    <img width="1639" height="856" alt="image" src="https://github.com/user-attachments/assets/a74e2637-6c6f-42f9-ac23-fafee9d1e38e" />
+
+
+- **Analysis & Visualization**  
+  - Jupyter Notebooks for post-processing and evaluation  
+  - Matplotlib for plotting results (confusion matrices, feature importance rankings, classification trends)
+<img width="618" height="438" alt="image" src="https://github.com/user-attachments/assets/89e48836-5b99-4c96-9c5a-818626d063a1" />
+<img width="645" height="398" alt="image" src="https://github.com/user-attachments/assets/991b0082-fa2a-4bbb-ac89-9d0a787b688f" />
+<img width="548" height="361" alt="image" src="https://github.com/user-attachments/assets/a3a850e8-15d2-4c9f-9b6e-122f02ca11ac" />
+
+
 <img width="931" height="899" alt="image" src="https://github.com/user-attachments/assets/d4edda07-a599-4a9f-8072-4d5a52f0b21c" />
 ---
 
